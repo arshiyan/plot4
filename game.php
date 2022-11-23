@@ -29,7 +29,30 @@ class Game_init
         $rows = (!isset($rows) || empty($rows)) ? 6 : $rows;
         $columns = (!isset($columns) || empty($columns)) ? 7 : $columns;
 
+
+        if(!$this->int_between($rows,5,9))
+        {
+            echo "Board rows should be from 5 to 9";
+            echo " ";
+            $this->_input_board();
+            return false;
+        }
+
+        if(!$this->int_between($columns,5,9))
+        {
+            echo "Board columns should be from 5 to 9";
+            echo " ";
+            $this->_input_board();
+            return false;
+        }
+
         return ['rows'=>$rows,'columns'=>$columns];
+    }
+
+    //check number between
+    public function int_between($value, $start, $end)
+    {
+        return in_array($value, range($start, $end));
     }
 
 }
