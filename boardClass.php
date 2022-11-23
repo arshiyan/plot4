@@ -1,7 +1,7 @@
 <?php
 
 
-class boardClass
+class BoardClass
 {
     public $row;
     public $columns;

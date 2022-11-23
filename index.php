@@ -4,6 +4,17 @@ require_once "game.php";
 
 
 $input_player = new Game_init();
+
+//input players
 $playes = $input_player->_input_playes();
 
-var_dump($playes);
+echo "players: ";
+print_r($playes);
+
+//input board : Rows and Columns
+$board = $input_player->_input_board();
+
+echo "Rows and Columns: ";
+print_r($board);
+
+
