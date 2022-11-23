@@ -27,7 +27,7 @@ class Game_init
         $columns = $board[1];
 
         $rows = (!isset($rows) || empty($rows)) ? 6 : $rows;
-        $columns = (!isset($columns) || empty($columns)) ? 7 : $columns;
+        $columns =(!isset($columns) || empty($columns)) ? 7 : $columns;
 
 
         //check int row
@@ -66,8 +66,6 @@ class Game_init
             return false;
         }
 
-
-
         return ['rows'=>$rows,'columns'=>$columns];
     }
 
@@ -79,7 +77,15 @@ class Game_init
 
     public function check_valid($value)
     {
-        return is_int($value);
+        return is_numeric($value);
+    }
+
+
+    public function startGame($player1,$player2,$rows,$columns)
+    {
+        echo $player1." VS ".$player2;
+        echo " ";
+        echo $rows." X ".$columns ."Board";
     }
 
 }
