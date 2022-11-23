@@ -30,6 +30,25 @@ class Game_init
         $columns = (!isset($columns) || empty($columns)) ? 7 : $columns;
 
 
+        //check int row
+        if(!$this->check_valid($rows))
+        {
+            echo "Invalid row input";
+            echo " ";
+            $this->_input_board();
+            return false;
+        }
+
+        //check int columns
+        if(!$this->check_valid($columns))
+        {
+            echo "Invalid columns input ";
+            echo " ";
+            $this->_input_board();
+            return false;
+        }
+
+        //check row between 5 to 9
         if(!$this->int_between($rows,5,9))
         {
             echo "Board rows should be from 5 to 9";
@@ -38,6 +57,7 @@ class Game_init
             return false;
         }
 
+        //check column between 5 to 9
         if(!$this->int_between($columns,5,9))
         {
             echo "Board columns should be from 5 to 9";
@@ -46,6 +66,8 @@ class Game_init
             return false;
         }
 
+
+
         return ['rows'=>$rows,'columns'=>$columns];
     }
 
@@ -53,6 +75,11 @@ class Game_init
     public function int_between($value, $start, $end)
     {
         return in_array($value, range($start, $end));
+    }
+
+    public function check_valid($value)
+    {
+        return is_int($value);
     }
 
 }
