@@ -8,6 +8,7 @@ class BoardClass
 
     public $playPosition;
     private $validitor;
+    public $testMode = false;
 
     function __construct($rows, $columns)
     {

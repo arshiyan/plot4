@@ -3,6 +3,7 @@ error_reporting(0);
 require_once "Player.php";
 require_once "Validetor.php";
 require_once "game.php";
+require_once "boardClass.php";
 
 class TestGame
 {
@@ -27,7 +28,23 @@ class TestGame
         }
     }
 
+    public function TestBoardDraw()
+    {
+        $fakers = array("8x8", "6x7", "7x8");
+
+
+        foreach ($fakers as $faker)
+        {
+            $board = explode('x',$faker);
+            $drawBoard = new BoardClass($board[0],$board[1]);
+            $drawBoard->testMode=true;// fire test mode
+            $drawBoard-> draw();
+        }
+
+    }
+
 }
 
 $test = new TestGame();
 $test->TestBoardFormat();
+$test->TestBoardDraw();
