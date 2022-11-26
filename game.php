@@ -1,9 +1,7 @@
 <?php
+require_once "Player.php";
+
 echo "Plot Four";
-
-
-
-
 
 class Game_init
 {
@@ -12,8 +10,16 @@ class Game_init
 
     public function _input_playes()
     {
-        $this->player1 = readline('First player`s name: ');
-        $this->player2 = readline('Second player`s name: ');
+        $player1 = readline('First player`s name: ');
+        $player2 = readline('Second player`s name: ');
+
+
+        $this->player1 = new Player();
+        $this->player1->setName($player1);
+
+
+        $this->player2 = new Player();
+        $this->player2->setName($player2);
 
         return ['player1'=>$this->player1,'player2'=>$this->player2];
     }
@@ -83,9 +89,10 @@ class Game_init
 
     public function startGame($player1,$player2,$rows,$columns)
     {
-        echo $player1." VS ".$player2;
-        echo " ";
-        echo $rows." X ".$columns ."Board";
+        echo $player1->getName()." VS ".$player2->getName();
+        echo " \n ";
+        echo $rows." X ".$columns ." Board";
+        echo " \n ";
     }
 
 }

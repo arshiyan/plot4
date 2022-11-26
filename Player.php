@@ -1,0 +1,30 @@
+<?php
+
+
+class Player
+{
+    private $name;// name of player
+    private $symbol; // * or O for player
+
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getSymbol()
+    {
+        return $this->name;
+    }
+
+    public function setSymbol($symbol)
+    {
+        $this->symbol = $symbol;
+    }
+
+}

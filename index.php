@@ -1,4 +1,5 @@
 <?php
+require_once "Player.php";
 require_once "game.php";
 
 
