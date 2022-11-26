@@ -1,16 +1,12 @@
 <?php
+error_reporting(0);
 require_once "Player.php";
 require_once "game.php";
-
-
 
 $input_player = new Game_init();
 
 //input players
 $playes = $input_player->_input_playes();
-
-//echo "players: ";
-//print_r($playes);
 
 //input board : Rows and Columns
 $board = $input_player->_input_board();

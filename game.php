@@ -1,13 +1,21 @@
 <?php
+error_reporting(0);
 require_once "Player.php";
+require_once "Validetor.php";
 
-echo "Plot Four";
+
 
 class Game_init
 {
     private $player1;
     private $player2;
-
+    private $validator;
+    public $testMode = false;
+    public function __construct()
+    {
+        $this->StartPrint();
+        $this->validator = new Validetor();
+    }
     public function _input_playes()
     {
         $player1 = readline('First player`s name: ');
@@ -24,24 +32,41 @@ class Game_init
         return ['player1'=>$this->player1,'player2'=>$this->player2];
     }
 
-    public function _input_board()
+    public function _input_board($boardInput = null)
     {
-        $board = readline('Set the board dimensions (Rows x Columns) Press Enter for default (6 x 7):');
-        $board = trim($board);
-        $board = (explode("x",$board));
+        if($this->validator->checkNotEmpty($boardInput))
+        {
+            $board = $boardInput;
+        }
+        else
+        {
+            $board = readline('Set the board dimensions (Rows x Columns) Press Enter for default (6 x 7):');
+        }
+
+        if(!$this->validator->checkBoardInput($board))
+        {
+            echo "Invalid row input";
+            echo " \n ";
+            $this->returnToStart();
+            return false;
+        }
+
+        $board = $this->validator->cleanString($board);
+        $board = explode('x',$board);
+
         $rows = $board[0];
         $columns = $board[1];
 
-        $rows = (!isset($rows) || empty($rows)) ? 6 : $rows;
-        $columns =(!isset($columns) || empty($columns)) ? 7 : $columns;
-
+        $rows = (!$this->validator->checkNotEmpty($rows)) ? 6 : $rows;
+        $columns =(!$this->validator->checkNotEmpty($columns)) ? 7 : $columns;
 
         //check int row
         if(!$this->check_valid($rows))
         {
+
             echo "Invalid row input";
-            echo " ";
-            $this->_input_board();
+            echo " \n ";
+            $this->returnToStart();
             return false;
         }
 
@@ -49,17 +74,18 @@ class Game_init
         if(!$this->check_valid($columns))
         {
             echo "Invalid columns input ";
-            echo " ";
-            $this->_input_board();
+            echo " \n ";
+            $this->returnToStart();
             return false;
         }
 
         //check row between 5 to 9
         if(!$this->int_between($rows,5,9))
         {
+
             echo "Board rows should be from 5 to 9";
-            echo " ";
-            $this->_input_board();
+            echo " \n ";
+            $this->returnToStart();
             return false;
         }
 
@@ -67,8 +93,8 @@ class Game_init
         if(!$this->int_between($columns,5,9))
         {
             echo "Board columns should be from 5 to 9";
-            echo " ";
-            $this->_input_board();
+            echo " \n ";
+            $this->returnToStart();
             return false;
         }
 
@@ -87,6 +113,9 @@ class Game_init
     }
 
 
+    // print
+    // <1st player`s name> VS <2nd players name>
+    //<Rows> X <Columns> board
     public function startGame($player1,$player2,$rows,$columns)
     {
         echo $player1->getName()." VS ".$player2->getName();
@@ -94,6 +123,28 @@ class Game_init
         echo $rows." X ".$columns ." Board";
         echo " \n ";
     }
+
+    public function StartPrint()
+    {
+        echo "Plot Four";
+        echo " \n ";
+    }
+
+    public function returnToStart()
+    {
+        if($this->testMode)
+        {
+
+            return false;
+        }
+        else
+        {
+            $this->_input_board();
+        }
+    }
+
+
+
 
 }
 
