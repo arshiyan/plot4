@@ -6,21 +6,65 @@ class BoardClass
     public $row;
     public $columns;
 
-    function __construct($row,$columns) {
-        $this->row = $row;
+    function __construct($rows, $columns)
+    {
+        $this->rows = $rows;
         $this->columns = $columns;
-
-    }
-    function get_row() {
-        return $this->row;
     }
 
-    function get_columns() {
+    public function getRow()
+    {
+        return $this->rows;
+    }
+
+    public function getColumns()
+    {
         return $this->columns;
     }
 
     public function draw()
     {
-        //drow board
+        $this->boxDraw();
+
+    }
+
+    public function boxDraw()
+    {
+
+        for ($x = 0; $x <= $this->columns; $x++) {
+            echo(" $x ");
+        }
+        echo "\n";
+
+        for ($i = 0; $i < $this->rows; $i++) {
+            for ($x = 0; $x <= $this->columns; $x++) {
+                echo "║" . $i . $x;
+
+                if ($x == $this->columns) {
+                    echo "║";
+                }
+            }
+            echo "\n";
+        }
+
+        //draw footer
+        echo "╚═";
+        for ($x = 0; $x <= $this->columns - 1; $x++) {
+            //echo (" ╩ ");
+            echo("═╩═");
+        }
+        echo "═╝";
+        echo "\n";
+
+
+    }
+
+
+    public function plainText()
+    {
+
+
+
+
     }
 }

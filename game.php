@@ -63,7 +63,6 @@ class Game_init
         //check int row
         if(!$this->check_valid($rows))
         {
-
             echo "Invalid row input";
             echo " \n ";
             $this->returnToStart();
@@ -82,7 +81,6 @@ class Game_init
         //check row between 5 to 9
         if(!$this->int_between($rows,5,9))
         {
-
             echo "Board rows should be from 5 to 9";
             echo " \n ";
             $this->returnToStart();

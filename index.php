@@ -2,6 +2,8 @@
 error_reporting(0);
 require_once "Player.php";
 require_once "game.php";
+require_once "boardClass.php";
+
 
 $input_player = new Game_init();
 
@@ -9,12 +11,16 @@ $input_player = new Game_init();
 $playes = $input_player->_input_playes();
 
 //input board : Rows and Columns
-$board = $input_player->_input_board();
+$boardInput = $input_player->_input_board();
 
 //echo "Rows and Columns: ";
 //print_r($board);
 
-$input_player->startGame($playes['player1'],$playes['player2'],$board['rows'],$board['columns']);
+$input_player->startGame($playes['player1'],$playes['player2'],$boardInput['rows'],$boardInput['columns']);
+
+$board = new BoardClass($boardInput['rows'],$boardInput['columns']);
+$board->draw();
+
 
 
 

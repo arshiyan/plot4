@@ -35,8 +35,7 @@ class Validetor
     public function checkBoardInput($board)
     {
         $board = $this->cleanString($board);
-        echo $board;
-        echo " \n ";
+
         //enter btn and set default value
         if(strlen($board) == 0 )
         {
