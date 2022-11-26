@@ -33,7 +33,6 @@ class PlayGameClass
         }
         $index = 'player'.$this->playerIndex;
 
-        var_dump($this->players[$index]);
         return $this->players[$index];
     }
     
