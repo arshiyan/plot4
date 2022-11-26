@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 require_once "Player.php";
 require_once "Validetor.php";
 
@@ -24,10 +24,12 @@ class Game_init
 
         $this->player1 = new Player();
         $this->player1->setName($player1);
+        $this->player1->setSymbol("*");
 
 
         $this->player2 = new Player();
         $this->player2->setName($player2);
+        $this->player2->setSymbol("o");
 
         return ['player1'=>$this->player1,'player2'=>$this->player2];
     }
@@ -140,6 +142,12 @@ class Game_init
             $this->_input_board();
         }
     }
+
+    public function _input_game()
+    {
+
+    }
+
 
 
 
