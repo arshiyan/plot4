@@ -25,9 +25,11 @@ class BoardClass
     public function draw()
     {
         $this->boxDraw();
+        //$this->plainText();
 
     }
 
+    //draw box
     public function boxDraw()
     {
 
@@ -59,11 +61,33 @@ class BoardClass
 
     }
 
-
+    //draw plain text
     public function plainText()
     {
 
+        for ($x = 0; $x <= $this->columns; $x++) {
+            echo(" $x ");
+        }
+        echo "\n";
 
+        for ($i = 0; $i < $this->rows; $i++) {
+            for ($x = 0; $x <= $this->columns; $x++) {
+                echo "|" . $i . $x;
+
+                if ($x == $this->columns) {
+                    echo "|";
+                }
+            }
+            echo "\n";
+        }
+
+        //draw footer
+        echo "==";
+        for ($x = 0; $x <= $this->columns - 1; $x++) {
+            echo("===");
+        }
+        echo "==";
+        echo "\n";
 
 
     }
