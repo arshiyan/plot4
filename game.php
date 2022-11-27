@@ -24,12 +24,12 @@ class Game_init
 
         $this->player1 = new Player();
         $this->player1->setName($player1);
-        $this->player1->setSymbol("*");
+        $this->player1->setSymbol("o");
 
 
         $this->player2 = new Player();
         $this->player2->setName($player2);
-        $this->player2->setSymbol("o");
+        $this->player2->setSymbol("*");
 
         return ['player1'=>$this->player1,'player2'=>$this->player2];
     }

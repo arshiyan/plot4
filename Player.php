@@ -19,7 +19,7 @@ class Player
 
     public function getSymbol()
     {
-        return $this->name;
+        return $this->symbol;
     }
 
     public function setSymbol($symbol)

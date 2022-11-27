@@ -20,15 +20,15 @@ $input_player->startGame($playes['player1'],$playes['player2'],$boardInput['rows
 
 $board = new BoardClass($boardInput['rows'],$boardInput['columns']);
 $game = new PlayGameClass($board->playPosition,$playes);
+$game->matrixArray = ["rows" => $boardInput['rows'],"columns" => $boardInput['columns']];
 
 $inp = "start";
 while ($inp != "end")
 {
-    $board->draw();
-    $Currentplayer = $game->nextPlayer();
-    var_dump($Currentplayer);
+    $board->draw(); // draw runtime board
+    $Currentplayer = $game->nextPlayer(); //switch player and return current player
     $inp = readline($Currentplayer->getName()."'s turn: ");
-
+    $board->playPosition = $game->setToColumn($inp,$Currentplayer); // return last player position
 }
 
 

@@ -3,6 +3,7 @@
 require_once "Player.php";
 require_once "game.php";
 require_once "boardClass.php";
+require_once "Validetor.php";
 
 class PlayGameClass
 {
@@ -11,12 +12,16 @@ class PlayGameClass
     private $players;
     private $playPosition;
     private $playerIndex;
+    private $validator;
+    public $matrixArray;
 
     public function __construct($playPosition,$players)
     {
         $this->playPosition = $playPosition;
         $this->players = $players;
         $this->playerIndex = 1;
+        $this->validator = new Validetor();
+
 
     }
 
@@ -35,15 +40,26 @@ class PlayGameClass
 
         return $this->players[$index];
     }
-    
-    public function runGame()
-    {
-        while ($this->inp != "end")
-        {
-            $this->inp = readline('First player`s name: ');
 
+    public function setToColumn($column,$player)
+    {
+        $index = $this->matrixArray['rows'];
+        while($index > 0) {
+            if(!$this->validator->checkNotEmpty($this->playPosition[$index][$column]))
+            {
+                $this->playPosition[$index][$column] = $player->getSymbol();
+                break;
+            }
+            echo $index--;
         }
 
+        return $this->playPosition;
     }
 
+
+    //get last player position
+    public function getPlayPosition()
+    {
+        return $this->playPosition;
+    }
 }

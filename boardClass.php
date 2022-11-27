@@ -14,13 +14,14 @@ class BoardClass
     {
         $this->rows = $rows;
         $this->columns = $columns;
-
+        $this->generateMatrix();
         $this->validitor = new Validetor();
 
-        $this->playPosition[1][1] = "*";
+
+        /*$this->playPosition[1][1] = "*";
         $this->playPosition[$this->rows-2][$this->columns-4] = "o";
         $this->playPosition[$this->rows-4][$this->columns-2] = "*";
-        $this->playPosition[$this->rows][$this->columns] = "o";
+        $this->playPosition[$this->rows][$this->columns] = "o";*/
 
     }
 
@@ -101,13 +102,13 @@ class BoardClass
     public function plainText()
     {
 
-        for ($x = 0; $x <= $this->columns; $x++) {
+        for ($x = 1; $x <= $this->columns; $x++) {
             echo(" $x ");
         }
         echo "\n";
 
-        for ($i = 0; $i < $this->rows; $i++) {
-            for ($x = 0; $x <= $this->columns; $x++) {
+        for ($i = 1; $i < $this->rows; $i++) {
+            for ($x = 1; $x <= $this->columns; $x++) {
                 echo "|" . $i . $x;
 
                 if ($x == $this->columns) {
@@ -119,7 +120,7 @@ class BoardClass
 
         //draw footer
         echo "==";
-        for ($x = 0; $x <= $this->columns - 1; $x++) {
+        for ($x = 1; $x <= $this->columns - 1; $x++) {
             echo("===");
         }
         echo "==";
@@ -142,6 +143,17 @@ class BoardClass
             case 'i': //info
                 echo "\033[36m$str\033[0m";
                 break;
+        }
+    }
+
+    //make default matrix
+    public function generateMatrix()
+    {
+        for ($i = 1; $i < $this->rows; $i++) {
+            for ($x = 1; $x <= $this->columns; $x++)
+            {
+                $this->playPosition[$this->rows][$this->columns] = "0";
+            }
         }
     }
 
