@@ -128,6 +128,12 @@ class Game_init
 
     public function StartPrint()
     {
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            system('cls');
+        } else {
+            system('clear');
+        }
+
         echo "Plot Four";
         echo " \n ";
     }

@@ -34,7 +34,11 @@ do {
         $playes,
         ["rows" => $boardInput['rows'],"columns" => $boardInput['columns']]
     );
-    $winPlayer = $winner->winCheck();
+    $winner->winCheck();
+    if($winner->done)
+    {
+        exit();
+    }
 
     $inp = readline($Currentplayer->getName()."'s turn: ");
     $board->playPosition = $game->setToColumn($inp,$Currentplayer); // return last player position

@@ -10,6 +10,7 @@ class WinnerCheck
     private $playPosition;
     private $validator;
     public $matrixArray;
+    public $done = false;
 
 
     public function __construct($playPosition,$players,$matrixArray)
@@ -23,10 +24,19 @@ class WinnerCheck
     //check for winner
     public function winCheck()
     {
+        if(!$this->horizontalWinCheck())
+        {
+            $this->verticalWinCheck();
+        }
 
+        $this->checkBoardIsFull();
+    }
+
+    //check winnwr in columns
+    public function verticalWinCheck()
+    {
         $rows = $this->matrixArray['rows'];
         $columns = $this->matrixArray['columns'];
-
         for ($i = $columns; $i >= 1; $i--)
         {
             $win = 0;
@@ -41,26 +51,68 @@ class WinnerCheck
                     }
                 }
 
+
                 if($win >= 3)
                 {
-                     $this->fireWine($this->playPosition[$x][$i]);
+                    $this->fireWine($this->playPosition[$x][$i]);
+                    return true;
                 }
             }
         }
-        $this->checkBoardIsFull();
+        return false;
+    }
+
+
+    //check winner in row
+    public function horizontalWinCheck()
+    {
+        $rows = $this->matrixArray['rows'];
+        $columns = $this->matrixArray['columns'];
+        for ($i = $rows; $i >= 1; $i--)
+        {
+            $win = 0;
+
+            for($x =$columns; $x >= 1 ;$x-- )
+            {
+
+                if($this->validator->checkNotEmpty($this->playPosition[$i][$x]))
+                {
+                    if(($this->validator->checkNotEmpty($this->playPosition[$i][$x-1])) && ($this->playPosition[$i][$x] == $this->playPosition[$i][$x-1]))
+                    {
+
+                        $win = $win + 1;
+                    }
+                }
+
+                if($win >= 3)
+                {
+                    $this->fireWine($this->playPosition[$i][$x]);
+                    return true;
+
+                }
+            }
+
+        }
+        return false;
     }
 
     public function fireWine($symbole)
     {
-
+        $this->done = true; //finish game
+        $playerWinner = null;
         foreach ($this->players as $player)
         {
             if($player->getSymbol() == $symbole)
             {
-
-                $this->winMessage($player);
+                $playerWinner = $player;
             }
         }
+        if($this->validator->checkNotEmpty($playerWinner))
+        {
+            $this->winMessage($playerWinner);
+        }
+        return true;
+
     }
 
     public function winMessage($player)
@@ -69,7 +121,6 @@ class WinnerCheck
         echo " \n ";
         echo "Game over!";
         echo " \n ";
-        exit();
     }
 
     //check the board is full
@@ -90,7 +141,7 @@ class WinnerCheck
                         echo " \n ";
                         echo "Game over!";
                         echo " \n ";
-                        exit();
+                        $this->done = true;
                     }
                 }
         }
