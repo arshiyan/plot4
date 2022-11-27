@@ -47,6 +47,11 @@ class Game_init
             $board = readline('Set the board dimensions (Rows x Columns) Press Enter for default (6 x 7):');
         }
 
+        if(!strlen($board))
+        {
+            $board = "6x7";
+        }
+
         if(!$this->validator->checkBoardInput($board))
         {
             echo "Invalid row input";
@@ -60,9 +65,6 @@ class Game_init
 
         $rows = $board[0];
         $columns = $board[1];
-
-        $rows = (!$this->validator->checkNotEmpty($rows)) ? 6 : $rows;
-        $columns =(!$this->validator->checkNotEmpty($columns)) ? 7 : $columns;
 
         //check int row
         if(!$this->check_valid($rows))
