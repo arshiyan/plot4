@@ -14,7 +14,7 @@ class BoardClass
     {
         $this->rows = $rows;
         $this->columns = $columns;
-        $this->generateMatrix();
+        //$this->generateMatrix();
         $this->validitor = new Validetor();
 
 

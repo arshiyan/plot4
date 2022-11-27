@@ -44,13 +44,34 @@ class PlayGameClass
     public function setToColumn($column,$player)
     {
         $index = $this->matrixArray['rows'];
+
+        if($column == "end")
+        {
+            echo " \n ";
+            echo "Game over!";
+            echo " \n ";
+            return $this->playPosition;
+        }
+        if(!$this->validator->checkInt($column))
+        {
+            echo "Incorrect column number ";
+            echo " \n ";
+            return $this->playPosition;
+        }
+        if($column > $this->matrixArray['columns'])
+        {
+            echo "The column number is out of range ".$this->matrixArray['columns'];
+            echo " \n ";
+            return $this->playPosition;
+        }
+
         while($index > 0) {
             if(!$this->validator->checkNotEmpty($this->playPosition[$index][$column]))
             {
                 $this->playPosition[$index][$column] = $player->getSymbol();
                 break;
             }
-            echo $index--;
+            $index--;
         }
 
         return $this->playPosition;
