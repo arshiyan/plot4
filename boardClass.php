@@ -14,15 +14,7 @@ class BoardClass
     {
         $this->rows = $rows;
         $this->columns = $columns;
-        //$this->generateMatrix();
         $this->validitor = new Validetor();
-
-
-        /*$this->playPosition[1][1] = "*";
-        $this->playPosition[$this->rows-2][$this->columns-4] = "o";
-        $this->playPosition[$this->rows-4][$this->columns-2] = "*";
-        $this->playPosition[$this->rows][$this->columns] = "o";*/
-
     }
 
     public function getRow()
@@ -103,14 +95,14 @@ class BoardClass
     {
 
         for ($x = 1; $x <= $this->columns; $x++) {
-            echo(" $x ");
+            echo " ".($x)." " ;
         }
         echo "\n";
 
         for ($i = 1; $i < $this->rows; $i++) {
             for ($x = 1; $x <= $this->columns; $x++) {
-                echo "|" . $i . $x;
-
+                echo "|";
+                $this->runTimeDraw($i,$x);
                 if ($x == $this->columns) {
                     echo "|";
                 }
@@ -143,17 +135,6 @@ class BoardClass
             case 'i': //info
                 echo "\033[36m$str\033[0m";
                 break;
-        }
-    }
-
-    //make default matrix
-    public function generateMatrix()
-    {
-        for ($i = 1; $i < $this->rows; $i++) {
-            for ($x = 1; $x <= $this->columns; $x++)
-            {
-                $this->playPosition[$this->rows][$this->columns] = "0";
-            }
         }
     }
 

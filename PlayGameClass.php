@@ -14,15 +14,16 @@ class PlayGameClass
     private $playerIndex;
     private $validator;
     public $matrixArray;
+    public $winPlayer;
+    public $winNumber;
 
     public function __construct($playPosition,$players)
     {
         $this->playPosition = $playPosition;
         $this->players = $players;
-        $this->playerIndex = 1;
+        $this->playerIndex = 2;
         $this->validator = new Validetor();
-
-
+        $this->winNumber = 0;
     }
 
     //switch to current player
@@ -71,16 +72,15 @@ class PlayGameClass
                 $this->playPosition[$index][$column] = $player->getSymbol();
                 break;
             }
+            else if($this->validator->checkNotEmpty($this->playPosition[1][$column]))
+            {
+                echo "column is full!";
+                echo " \n ";
+                break;
+            }
             $index--;
         }
 
-        return $this->playPosition;
-    }
-
-
-    //get last player position
-    public function getPlayPosition()
-    {
         return $this->playPosition;
     }
 }

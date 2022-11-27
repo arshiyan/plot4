@@ -11,6 +11,8 @@ class Game_init
     private $player2;
     private $validator;
     public $testMode = false;
+    public static $doneGame = false;
+
     public function __construct()
     {
         $this->StartPrint();

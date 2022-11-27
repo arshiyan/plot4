@@ -5,6 +5,7 @@ require_once "Player.php";
 require_once "game.php";
 require_once "boardClass.php";
 require_once "PlayGameClass.php";
+require_once "WinnerCheck.php";
 
 
 $input_player = new Game_init();
@@ -18,18 +19,28 @@ $boardInput = $input_player->_input_board();
 //echo "Rows and Columns: ";
 $input_player->startGame($playes['player1'],$playes['player2'],$boardInput['rows'],$boardInput['columns']);
 
+
 $board = new BoardClass($boardInput['rows'],$boardInput['columns']);
 $game = new PlayGameClass($board->playPosition,$playes);
 $game->matrixArray = ["rows" => $boardInput['rows'],"columns" => $boardInput['columns']];
 
 $inp = "start";
-while ($inp != "end")
-{
+do {
+
     $board->draw(); // draw runtime board
     $Currentplayer = $game->nextPlayer(); //switch player and return current player
+    $winner = new WinnerCheck(
+        $board->playPosition,
+        $playes,
+        ["rows" => $boardInput['rows'],"columns" => $boardInput['columns']]
+    );
+    $winPlayer = $winner->winCheck();
+
     $inp = readline($Currentplayer->getName()."'s turn: ");
     $board->playPosition = $game->setToColumn($inp,$Currentplayer); // return last player position
-}
+
+} while ($inp != "end");
+
 
 
 
