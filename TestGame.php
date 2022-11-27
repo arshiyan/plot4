@@ -1,30 +1,15 @@
 <?php
-
-use function Couchbase\defaultDecoder;
-
-error_reporting(E_ERROR | E_PARSE);
-require_once "Player.php";
-require_once "game.php";
-require_once "boardClass.php";
-require_once "PlayGameClass.php";
-require_once "WinnerCheck.php";
-require_once "Validetor.php";
+require_once "config.php";
 
 class TestGame
 {
-
-
-    public function TestPLayerName()
-    {
-
-    }
 
     public static function TestBoardFormat()
     {
         //test parameters
         $fakers = array("4x7", "10x7", "7 x 4","7 X 10","5X9","6 7","6_7","6 V 7","6x7");
 
-        $input_player = new Game_init();
+        $input_player = new GameClass();
 
         foreach ($fakers as $faker)
         {
@@ -74,7 +59,7 @@ class TestGame
             $drawBoard->testMode = true;// fire test mode
 
             $players = $this->fakePlayer();
-            $input_player = new Game_init();
+            $input_player = new GameClass();
             $input_player->startGame($players['player1'], $players['player2'], $board[0], $board[1]);
             $game = new PlayGameClass($drawBoard->playPosition, $this->fakePlayer());
             $game->matrixArray = ["rows" => $board[0], "columns" => $board[1]];

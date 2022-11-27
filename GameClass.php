@@ -1,11 +1,9 @@
 <?php
-//error_reporting(0);
-require_once "Player.php";
-require_once "Validetor.php";
+require_once "config.php";
 
 
 
-class Game_init
+class GameClass
 {
     private $player1;
     private $player2;

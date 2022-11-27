@@ -1,8 +1,5 @@
 <?php
-require_once "Player.php";
-require_once "game.php";
-require_once "boardClass.php";
-require_once "Validetor.php";
+require_once "config.php";
 
 class WinnerCheck
 {
