@@ -52,7 +52,7 @@ class GameClass
 
         if(!$this->validator->checkBoardInput($board))
         {
-            echo "Invalid row input";
+            echo "Invalid input";
             echo " \n ";
             $this->returnToStart();
             return false;

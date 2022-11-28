@@ -4,7 +4,7 @@ require_once "config.php";
 class TestGame
 {
 
-    public static function TestBoardFormat()
+    public function TestBoardFormat()
     {
         //test parameters
         $fakers = array("4x7", "10x7", "7 x 4","7 X 10","5X9","6 7","6_7","6 V 7","6x7");
@@ -13,8 +13,16 @@ class TestGame
 
         foreach ($fakers as $faker)
         {
+            echo $faker;
+            echo " \n ";
             $input_player->testMode=true;// fire test mode
-            $input_player-> _input_board($faker);
+            $result = $input_player-> _input_board($faker);
+
+            if(isset($result) && !empty($result))
+            {
+                $players = $this->fakePlayer();
+                $input_player->startGame( $players['player1'],$players['player2'],$result['rows'],$result['columns']);
+            }
         }
     }
 
@@ -25,10 +33,12 @@ class TestGame
 
         foreach ($fakers as $faker)
         {
+            echo $faker;
+            echo " \n ";
             $board = explode('x',$faker);
             $drawBoard = new BoardClass($board[0],$board[1]);
             $drawBoard->testMode=true;// fire test mode
-            $drawBoard-> draw();
+            $drawBoard->draw();
         }
 
     }

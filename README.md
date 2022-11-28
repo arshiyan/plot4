@@ -32,6 +32,11 @@ Run Test in docker composer
 
 ##Run Game
 
+For Draw plain text change config file:
+```php
+define("RUNDRAW","noneboxDraw");
+```
+
 Run Game in docker composer
 
 ```Shell

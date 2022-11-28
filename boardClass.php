@@ -29,9 +29,16 @@ class BoardClass
 
     public function draw()
     {
-        $this->boxDraw();
-        //$this->plainText();
+        $draw = constant("RUNDRAW");
 
+        if($draw == "boxDraw")
+        {
+            $this->boxDraw();
+        }
+        else
+        {
+            $this->plainText();
+        }
     }
 
     public function runTimeDraw($row,$col)
@@ -99,14 +106,16 @@ class BoardClass
         }
         echo "\n";
 
-        for ($i = 1; $i < $this->rows; $i++) {
+        for ($i = 1; $i <= $this->rows; $i++) {
             for ($x = 1; $x <= $this->columns; $x++) {
                 echo "|";
                 $this->runTimeDraw($i,$x);
                 if ($x == $this->columns) {
-                    echo "|";
+                    echo "| ";
                 }
             }
+
+            echo " ".($i);
             echo "\n";
         }
 
