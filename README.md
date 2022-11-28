@@ -26,7 +26,7 @@ services:
 Run Test in docker composer
 
 ```Shell
- docker-compose exec php php TestClass.php
+ docker-compose exec php php TestGame.php
 ```
 
 
