@@ -140,6 +140,6 @@ class TestGame
 }
 
 $test = new TestGame();
-//$test->TestBoardFormat();
-//$test->TestBoardDraw();
+$test->TestBoardFormat();
+$test->TestBoardDraw();
 $test->testGamePlay();
