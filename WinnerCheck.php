@@ -21,6 +21,8 @@ class WinnerCheck
     //check for winner
     public function winCheck()
     {
+        $this->diagonalWinCheck();
+
         if(!$this->horizontalWinCheck())
         {
             $this->verticalWinCheck();
@@ -47,7 +49,6 @@ class WinnerCheck
 
                     }
                 }
-
 
                 if($win >= 3)
                 {
@@ -80,6 +81,75 @@ class WinnerCheck
                         $win = $win + 1;
                     }
                 }
+
+                if($win >= 3)
+                {
+                    $this->fireWine($this->playPosition[$i][$x]);
+                    return true;
+
+                }
+            }
+
+        }
+        return false;
+    }
+
+    //check winner in diagonal
+    public function diagonalWinCheck()
+    {
+        $rows = $this->matrixArray['rows'];
+        $columns = $this->matrixArray['columns'];
+        echo " \n ";
+        for ($i = $rows; $i >= 1; $i--)
+        {
+            $win = 0;
+
+            for($x =$columns; $x >= 1 ;$x-- )
+            {
+                if($this->validator->checkNotEmpty($this->playPosition[$i][$x]))
+                {
+                    $index = 1;
+                    while ($index <= 4)
+                    {
+                        if (($this->validator->checkNotEmpty($this->playPosition[$i - $index][$x + $index])) && ($this->playPosition[$i][$x] == $this->playPosition[$i - $index][$x + $index])) {
+                            $win = $win + 1;
+                            /*echo "right[".($i - $index)."][".($x + $index)."]:$win";
+                            echo " \n ";*/
+                            if($win >= 3)
+                                break;
+                        }
+                        else
+                        {
+                            $win = 0;
+                            break;
+
+                        }
+                        $index ++;
+                    }
+
+
+                    if($win < 3)
+                    {
+                        $index = 1;
+                        while ($index <= 4)
+                        {
+                            if (($this->validator->checkNotEmpty($this->playPosition[$i - $index][$x - $index])) && ($this->playPosition[$i][$x] == $this->playPosition[$i - $index][$x - $index])) {
+                                $win = $win + 1;
+                               /* echo "left[".($i - $index)."][".($x - $index)."]:$win:".$this->playPosition[$i][$x]." index:".$index." ix:"."$i.$x";
+                                echo " \n ";*/
+                                if($win >= 3)
+                                    break;
+                            }
+                            else
+                            {
+                                $win = 0;
+                                break;
+                            }
+                            $index ++;
+                        }
+                    }
+                }
+
 
                 if($win >= 3)
                 {

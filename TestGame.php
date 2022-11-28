@@ -53,14 +53,20 @@ class TestGame
                 ["board"=>"5x7","args" => [2,3,2,2,1,4,'end','']],
                 ["board"=>"6x8","args" => [2,2,3,3,4,4,5,'']],
                 ["board"=>"5x7","args" => [3,4,3,4,3,4,2,4,'']],
-                ["board"=>"7x7","args" => [3,4,4,5,5,6,5,3,6,6,6,'']],
-                ["board"=>"5x5","args" => [1,1,1,1,1,2,3,4,2,2,2,3,3,3,5,4,4,4,4,5,5,5,5,2,3,4,'']],
-
+                ["board"=>"7x7","args" => [3,4,4,5,5,6,5,3,6,6,6,'']],//left diagonal
+                ["board"=>"7x8","args" => [3,5,4,4,3,1,7,3,3,2,2,2,1,2,'']],//right diagonal
+                ["board"=>"5x5","args" => [1,1,1,1,1,2,3,4,2,2,2,3,3,3,5,4,4,4,4,5,5,5,5,2,3,4,1,1,1,'']],
                 ["board"=>"6x7","args" => [7,6,7,5,7,4,7,'']]
 
             ];
+            /*$fakers =
+            [
+                //["board"=>"7x7","args" => [3,4,4,5,5,6,5,3,6,6,6,'']],//left diagonal
+                //["board"=>"7x8","args" => [3,5,4,4,3,1,7,3,3,2,2,2,1,2,1,1,2,1,'']],//right diagonal
+                //["board"=>"5x5","args" => [1,1,1,1,1,2,3,4,2,2,2,3,3,3,5,4,4,4,4,5,5,5,5,2,3,4,1,1,1,'']],
+                //["board"=>"5x5","args" => [1,1,1,1,1,2,3,4,2,2,2,3,3,'']],
 
-
+            ];*/
         foreach ($fakers as $faker) {
 
 
@@ -134,6 +140,6 @@ class TestGame
 }
 
 $test = new TestGame();
-$test->TestBoardFormat();
-$test->TestBoardDraw();
+//$test->TestBoardFormat();
+//$test->TestBoardDraw();
 $test->testGamePlay();

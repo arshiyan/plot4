@@ -13,7 +13,7 @@ require_once "Validetor.php";
 //Draw box or plain text
 //for BoxDraw = boxDraw
 //else draw plain text
-define("RUNDRAW","boxDraw1");
+define("RUNDRAW","boxDraw");
 
 
 
