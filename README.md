@@ -21,10 +21,10 @@ services:
 ```
 OR
 
-Use Docker repository
+Use Docker repository in https://hub.docker.com/r/arshiyan1/plot4
 
 ```Docker
- docker run -d -p80:3000 arshiyan1/plot4
+ docker pull arshiyan1/plot4
 ```
 
 ##Test
