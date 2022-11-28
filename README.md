@@ -19,7 +19,13 @@ services:
       - 8000:80
 
 ```
+OR
 
+Use Docker repository
+
+```Docker
+ docker run -d -p80:3000 arshiyan1/plot4
+```
 
 ##Test
 
